@@ -1,6 +1,11 @@
+#João Renan Lopes, Carlos Egger, pedro Coimbra
+#Trabalho de Teoria da Computabildiade e linguagens Formais e Autômatos
+#import de modluls necessarios
 from collections import defaultdict
 import random
 
+
+#definindo classe MaquinaDeTuringIndeterministica junto com o método __init__(construtor)
 class MaquinaDeTuringIndeterministica:
     def __init__(self, estados, alfabeto, alfabeto_fita, funcao_transicao, estado_inicial, estado_aceitacao, estado_rejeicao):
         self.estados = estados
@@ -16,12 +21,13 @@ class MaquinaDeTuringIndeterministica:
         self.fita = []
         self.cabeca = 0
         self.estado_atual = estado_inicial
-
+        
+#função pra inicializar fita
     def inicializar_fita(self, cadeia_entrada):
         self.fita = list(cadeia_entrada) + ['_']
         self.cabeca = 0
         self.estado_atual = self.estado_inicial
-
+#função pra relaizar passo (simialr a uma função de transição)
     def passo(self):
         if self.estado_atual in [self.estado_aceitacao, self.estado_rejeicao]:
             return
@@ -44,17 +50,20 @@ class MaquinaDeTuringIndeterministica:
             elif self.cabeca >= len(self.fita):
                 self.fita.append('_')
 
+    #função para executar automato (inicialziação e passo)
     def executar(self, cadeia_entrada):
         self.inicializar_fita(cadeia_entrada)
         while self.estado_atual not in [self.estado_aceitacao, self.estado_rejeicao]:
             self.passo()
         return self.estado_atual == self.estado_aceitacao
-
+        
+#função de retorno ao rusuario (retorno do estdo final q_aceito, etc..)
     def imprimir_estado_final(self):
         print("Estado final:", self.estado_atual)
         print("Conteúdo da fita:", ''.join(self.fita))
         print("Posição da cabeça:", self.cabeca)
-        
+
+#imprimir funções de transição do automato para melhor visiualização
 def imprimir_automato(funcao_transicao):
     print("Autômato da Máquina de Turing Indeterminística:")
     for (estado_atual, simbolo_atual), transicoes in funcao_transicao.items():
@@ -107,15 +116,19 @@ funcao_transicao = {
     ('q10', 'b'): [('q0', '_', 'D')],
     ('q11', 'c'): [('q0', '_', 'D')],
 }
-
+#definindo estado inicial e variaveis importantes de referencia para o programa
 estado_inicial = 'q0'
 estado_aceitacao = 'q_aceitar'
 estado_rejeicao = 'q_rejeitar'
 
+
+#execução principal (instacnia de objeto da classe MaquinaDeTuringIndeterministica)
 mt = MaquinaDeTuringIndeterministica(estados, alfabeto, alfabeto_fita, funcao_transicao, estado_inicial, estado_aceitacao, estado_rejeicao)
 
 cadeia_entrada = "abccba"
 resultado = mt.executar(cadeia_entrada)
+
+#controle de fluxo para verificar se foi aceita ou nao
 if resultado:
     print("A cadeia foi aceita.")
 else:
