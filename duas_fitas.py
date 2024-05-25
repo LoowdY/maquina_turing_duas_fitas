@@ -51,6 +51,7 @@ class MaquinaDeTuringDuasFitas:
             configuracao_atual = configuracoes.pop()
             if configuracao_atual.estado_atual in self.estados_finais:
                 print("Aceito: ", ''.join(configuracao_atual.fita1).strip(self.simbolo_branco))
+                configuracao_atual.imprimir_estado()
                 return True
 
             for proxima_configuracao in configuracao_atual.passo():
@@ -58,6 +59,19 @@ class MaquinaDeTuringDuasFitas:
 
         print("Rejeitado")
         return False
+
+    def imprimir_estado(self):
+        # Imprime o estado atual da máquina, incluindo as fitas e posições dos cabeçotes
+        fita1_str = ''.join(self.fita1)
+        fita2_str = ''.join(self.fita2)
+        cabeçote1 = ' ' * self.posicao_cabeca1 + '^'
+        cabeçote2 = ' ' * self.posicao_cabeca2 + '^'
+        print(f"Estado atual: {self.estado_atual}")
+        print(f"Fita 1: {fita1_str}")
+        print(f"Fita 2: {fita2_str}")
+        print(f"Posição cabeçote 1: {cabeçote1}")
+        print(f"Posição cabeçote 2: {cabeçote2}")
+        print()
 
 # Definição da Máquina de Turing com duas fitas e 12 estados
 estados = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'qf'}
@@ -87,13 +101,12 @@ estados_finais = {'qf'}
 
 maquina = MaquinaDeTuringDuasFitas(estados, simbolos_entrada, simbolos_fita, transicoes, estado_inicial, simbolo_branco, estados_finais)
 
-# Exemplo 1
+# Entrada do exemplo 1 (alfabeto 0 e 1)
 entrada1 = "010101"
 print(f"Executando a Máquina de Turing ND com duas fitas com entrada: {entrada1}")
 maquina.executar(entrada1)
 
-# Exemplo 2
+# Entrada do exemplo 2 (alfabeto 0 e 1)
 entrada2 = "111000"
 print(f"Executando a Máquina de Turing ND com duas fitas com entrada: {entrada2}")
 maquina.executar(entrada2)
-
