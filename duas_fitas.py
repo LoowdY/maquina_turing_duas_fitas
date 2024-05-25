@@ -1,3 +1,8 @@
+#João Renan, Carlos Egger, Pedro Coimbra.
+#trabalho de teoria da computabildiade e linguagens formais e automatos
+
+
+# Definição da Classe MaquinaDeTuringDuasFitas com o __init__ (construtor).
 class MaquinaDeTuringDuasFitas:
     def __init__(self, estados, simbolos_entrada, simbolos_fita, transicoes, estado_inicial, simbolo_branco, estados_finais):
         self.estados = estados
@@ -13,6 +18,7 @@ class MaquinaDeTuringDuasFitas:
         self.posicao_cabeca1 = 0
         self.posicao_cabeca2 = 0
 
+    #inicializar variáveis e arrays (fitas da máquina de turing) para armazenar valroes das fitas, bem como o valor das cabeças da máquina.
     def inicializar_fitas(self, entrada):
         self.fita1 = list(entrada) + [self.simbolo_branco]
         self.fita2 = [self.simbolo_branco] * (len(entrada) + 1)
@@ -20,6 +26,8 @@ class MaquinaDeTuringDuasFitas:
         self.posicao_cabeca2 = 0
         self.estado_atual = self.estado_inicial
 
+    
+#função para relaizar transição entre estados (espécie de função de transição)
     def passo(self):
         simbolo_atual1 = self.fita1[self.posicao_cabeca1]
         simbolo_atual2 = self.fita2[self.posicao_cabeca2]
@@ -42,7 +50,7 @@ class MaquinaDeTuringDuasFitas:
                 nova_maquina.posicao_cabeca1 = self.posicao_cabeca1 + (1 if direcao1 == 'D' else -1)
                 nova_maquina.posicao_cabeca2 = self.posicao_cabeca2 + (1 if direcao2 == 'D' else -1)
                 yield nova_maquina
-
+#executa máquinas. (iniciaçlização e invocação de função)
     def executar(self, entrada):
         self.inicializar_fitas(entrada)
         configuracoes = [self]
@@ -57,9 +65,11 @@ class MaquinaDeTuringDuasFitas:
             for proxima_configuracao in configuracao_atual.passo():
                 configuracoes.append(proxima_configuracao)
 
+        #printa o resultado caso seja rejeitado
         print("Rejeitado")
         return False
-
+    
+#função que vai imprimir estado da mpaquina (necessário apra feedback ao usuário)
     def imprimir_estado(self):
         # Imprime o estado atual da máquina, incluindo as fitas e posições dos cabeçotes
         fita1_str = ''.join(self.fita1)
@@ -72,6 +82,15 @@ class MaquinaDeTuringDuasFitas:
         print(f"Posição cabeçote 1: {cabeçote1}")
         print(f"Posição cabeçote 2: {cabeçote2}")
         print()
+        
+#printa funções de tansição do automato
+def print_automaton(transicoes):
+    print("Autômato da Máquina de Turing:")
+    for (estado_atual, simbolo_atual1, simbolo_atual2), transicoes_possiveis in transicoes.items():
+        for transicao in transicoes_possiveis:
+            estado_proximo, simbolo_escrever1, simbolo_escrever2, direcao1, direcao2 = transicao
+            print(f"({estado_atual}, {simbolo_atual1}, {simbolo_atual2}) -> ({estado_proximo}, {simbolo_escrever1}, {simbolo_escrever2}, {direcao1}, {direcao2})")
+
 
 # Definição da Máquina de Turing com duas fitas e 12 estados
 estados = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'qf'}
@@ -110,3 +129,6 @@ maquina.executar(entrada1)
 entrada2 = "111000"
 print(f"Executando a Máquina de Turing ND com duas fitas com entrada: {entrada2}")
 maquina.executar(entrada2)
+
+# Chamada da função de impressão do autômato
+print_automaton(transicoes)
