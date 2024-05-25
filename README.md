@@ -1,4 +1,4 @@
-# Máquinas de Turing Indeterminísticas em Python
+# Máquinas de Turing em Python
 
 ## Introdução
 
