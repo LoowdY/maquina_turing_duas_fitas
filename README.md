@@ -1,25 +1,33 @@
-# Máquina de Turing Não Determinística em Python
+# Máquinas de Turing Indeterminísticas em Python
 
-## Descrição
+## Introdução
 
-Este projeto implementa uma Máquina de Turing Não Determinística (MTND) em Python, com interação do usuário. A Máquina de Turing é um modelo computacional teórico que consiste em uma fita infinita que pode ser lida e escrita, um cabeçote de leitura/escrita que se move pela fita e uma tabela de transições que define as regras para mover o cabeçote e modificar a fita. É usada para formalizar o conceito de computação e para estudar os limites do que pode ser computado.
+Este documento descreve duas implementações de Máquinas de Turing em Python. A primeira é uma Máquina de Turing indeterminística de fita única, enquanto a segunda é uma Máquina de Turing indeterminística de duas fitas. Cada uma dessas máquinas é capaz de processar cadeias de entrada e determinar se elas satisfazem certas condições especificadas pelas funções de transição. Este trabalho foi desenvolvido por João Renan Lopes, Pedro Coimbra e Carlos Egger.
 
-## O que é uma Máquina de Turing Não Determinística?
+## Máquina de Turing Indeterminística de Fita Única
 
-Uma Máquina de Turing Não Determinística (MTND) é uma variação da Máquina de Turing clássica. Em vez de ter apenas uma transição possível para cada combinação de estado e símbolo na fita, pode haver várias transições possíveis. Isso significa que a MTND pode "escolher" entre vários caminhos possíveis de execução, permitindo que explore várias computações em paralelo.
+### Descrição
 
-## Estrutura do Código
+A primeira implementação é uma Máquina de Turing indeterminística que verifica se uma cadeia é um palíndromo. Ela possui 12 estados e usa transições aleatórias para determinar o próximo estado e operação. A máquina imprime o estado final e o conteúdo da fita ao terminar.
 
-### Classe `MaquinaDeTuringND`
+### Explicação
 
-A classe encapsula os estados, símbolos de entrada e fita, transições, estado inicial, símbolo branco, estados finais e a lógica para inicializar a fita, realizar um passo de computação e executar a máquina.
+- **Inicialização**: A máquina é inicializada com os estados, alfabetos, função de transição, estado inicial, estado de aceitação e estado de rejeição.
+- **Inicializar Fita**: Este método inicializa a fita com a cadeia de entrada e define a posição inicial da cabeça de leitura/escrita.
+- **Passo**: Executa um único passo da máquina, selecionando uma transição aleatória entre as possíveis e atualizando o estado, a fita e a posição da cabeça.
+- **Executar**: Este método executa a máquina até que ela alcance um estado de aceitação ou rejeição, retornando `True` se a cadeia for aceita e `False` caso contrário.
+- **Imprimir Estado Final**: Método que imprime o estado final da máquina, incluindo o conteúdo da fita e a posição final da cabeça.
 
-- **`__init__`**: Inicializa a máquina com estados, símbolos, transições, estado inicial, símbolo branco e estados finais.
-- **`inicializar_fita`**: Configura a fita inicial com a entrada fornecida.
-- **`passo`**: Realiza um passo de computação, gerando novas máquinas de Turing com as possíveis transições.
-- **`executar`**: Executa a máquina de Turing, explorando todas as configurações possíveis até encontrar uma que leva a um estado final ou esgotar as possibilidades.
+## Máquina de Turing Indeterminística de Duas Fitas
 
-##Desenvolvedores:  
--João Renan Santanna Lopes
--Pedro Henrique Costa Coimbra
--Carlos Egger Carvalho Miranda
+### Descrição
+
+A segunda implementação é uma Máquina de Turing indeterminística de duas fitas que verifica se duas cadeias são iguais. Esta máquina compara as entradas nas duas fitas, caracter por caracter, e determina se elas são idênticas. Ela tem estados separados para processar cada fita e pode aceitar ou rejeitar baseado na igualdade das cadeias.
+
+### Explicação
+
+- **Inicialização**: A máquina é inicializada com os estados, alfabetos, funções de transição para cada fita, estado inicial, e estados de aceitação e rejeição.
+- **Inicializar Fitas**: Este método inicializa as fitas com as cadeias de entrada e define as posições iniciais das cabeças de leitura/escrita.
+- **Passo**: Executa um único passo da máquina, selecionando uma transição aleatória entre as possíveis para cada fita e atualizando os estados, as fitas e as posições das cabeças.
+- **Executar**: Este método executa a máquina até que ela alcance um estado de aceitação ou rejeição em ambas as fitas, retornando `True` se as cadeias forem iguais e `False` caso contrário.
+- **Imprimir Estado Final**: Método que imprime o estado final da máquina, incluindo o conteúdo das fitas e as posições finais das cabeças.
