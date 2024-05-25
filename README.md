@@ -2,32 +2,42 @@
 
 ## Introdução
 
-Este documento descreve duas implementações de Máquinas de Turing em Python. A primeira é uma Máquina de Turing indeterminística de fita única, enquanto a segunda é uma Máquina de Turing indeterminística de duas fitas. Cada uma dessas máquinas é capaz de processar cadeias de entrada e determinar se elas satisfazem certas condições especificadas pelas funções de transição. Este trabalho foi desenvolvido por João Renan Lopes, Pedro Coimbra e Carlos Egger.
+Este documento descreve duas implementações de Máquinas de Turing em Python, projetadas por João Renan Lopes, Pedro Henrique Coimbra e Carlos Egger. 
 
 ## Máquina de Turing Indeterminística de Fita Única
 
 ### Descrição
 
-A primeira implementação é uma Máquina de Turing indeterminística que verifica se uma cadeia é um palíndromo. Ela possui 12 estados e usa transições aleatórias para determinar o próximo estado e operação. A máquina imprime o estado final e o conteúdo da fita ao terminar.
+Verifica se uma cadeia é um palíndromo usando 12 estados e transições aleatórias.
 
-### Explicação
+### Componentes e Métodos
 
-- **Inicialização**: A máquina é inicializada com os estados, alfabetos, função de transição, estado inicial, estado de aceitação e estado de rejeição.
-- **Inicializar Fita**: Este método inicializa a fita com a cadeia de entrada e define a posição inicial da cabeça de leitura/escrita.
-- **Passo**: Executa um único passo da máquina, selecionando uma transição aleatória entre as possíveis e atualizando o estado, a fita e a posição da cabeça.
-- **Executar**: Este método executa a máquina até que ela alcance um estado de aceitação ou rejeição, retornando `True` se a cadeia for aceita e `False` caso contrário.
-- **Imprimir Estado Final**: Método que imprime o estado final da máquina, incluindo o conteúdo da fita e a posição final da cabeça.
+- **Inicialização**: Define estados, alfabeto, transições, estado inicial, aceitação e rejeição.
+- **Inicializar Fita**: Carrega a cadeia na fita e posiciona a cabeça de leitura/escrita.
+- **Passo**: Seleciona uma transição aleatória, atualiza o estado e a posição da cabeça.
+- **Executar**: Processa até atingir um estado de aceitação ou rejeição.
+- **Imprimir Estado Final**: Mostra o estado final, conteúdo da fita e posição da cabeça.
 
-## Máquina de Turing Indeterminística de Duas Fitas
+## Máquina de Turing de Duas Fitas (múltiplas fitas)
 
 ### Descrição
 
-A segunda implementação é uma Máquina de Turing indeterminística de duas fitas que verifica se duas cadeias são iguais. Esta máquina compara as entradas nas duas fitas, caracter por caracter, e determina se elas são idênticas. Ela tem estados separados para processar cada fita e pode aceitar ou rejeitar baseado na igualdade das cadeias.
+Compara duas cadeias nas fitas para determinar se são idênticas.
 
-### Explicação
+### Componentes e Métodos
 
-- **Inicialização**: A máquina é inicializada com os estados, alfabetos, funções de transição para cada fita, estado inicial, e estados de aceitação e rejeição.
-- **Inicializar Fitas**: Este método inicializa as fitas com as cadeias de entrada e define as posições iniciais das cabeças de leitura/escrita.
-- **Passo**: Executa um único passo da máquina, selecionando uma transição aleatória entre as possíveis para cada fita e atualizando os estados, as fitas e as posições das cabeças.
-- **Executar**: Este método executa a máquina até que ela alcance um estado de aceitação ou rejeição em ambas as fitas, retornando `True` se as cadeias forem iguais e `False` caso contrário.
-- **Imprimir Estado Final**: Método que imprime o estado final da máquina, incluindo o conteúdo das fitas e as posições finais das cabeças.
+- **Inicialização**: Configura estados, alfabetos, transições, estado inicial, aceitação e rejeição para duas fitas.
+- **Inicializar Fitas**: Carrega as cadeias e define as posições iniciais das cabeças de leitura/escrita.
+- **Passo**: Realiza um passo para cada fita com base em transições aleatórias.
+- **Executar**: Opera até um estado de aceitação ou rejeição ser alcançado em ambas as fitas.
+- **Imprimir Estado Final**: Exibe o estado final, conteúdo das fitas e posição das cabeças.
+
+## Dificuldades Encontradas
+
+- **Indeterminismo**: A seleção de transições aleatórias introduziu complexidade no teste e na verificação das máquinas.
+- **Sincronização de Fitas**: Para a máquina de duas fitas, garantir a sincronização adequada e a comparação precisa entre as cadeias foi desafiador.
+- **Otimização de Desempenho**: Melhorar a eficiência das máquinas, especialmente com entradas maiores, exigiu ajustes significativos nas funções de transição e gerenciamento de estados.
+
+## Conclusão
+
+As implementações de Máquinas de Turing  demonstram a flexibilidade e a complexidade de adaptar conceitos teóricos para soluções programáticas práticas. Esses modelos são fundamentais para entender o processamento de linguagens formais e algoritmos de decisão em computação.
