@@ -18,25 +18,66 @@ Verifica se uma cadeia é um palíndromo usando 12 estados e transições aleat�
 - **Executar**: Processa até atingir um estado de aceitação ou rejeição.
 - **Imprimir Estado Final**: Mostra o estado final, conteúdo da fita e posição da cabeça.
 
-## Máquina de Turing de Duas Fitas (múltiplas fitas)
+# Máquina de Turing com Duas Fitas - Implementação e Funcionamento
 
-### Descrição
+Abaixo está um detalhamento da implementação e do funcionamento de uma Máquina de Turing não-determinística com duas fitas, simulada em Python.
 
-Compara duas cadeias nas fitas para determinar se são idênticas.
+## Classe `MaquinaDeTuringDuasFitas`
 
-### Componentes e Métodos
+Esta classe representa uma máquina de Turing que opera com duas fitas. Suas principais características e métodos incluem:
 
-- **Inicialização**: Configura estados, alfabetos, transições, estado inicial, aceitação e rejeição para duas fitas.
-- **Inicializar Fitas**: Carrega as cadeias e define as posições iniciais das cabeças de leitura/escrita.
-- **Passo**: Realiza um passo para cada fita com base em transições aleatórias.
-- **Executar**: Opera até um estado de aceitação ou rejeição ser alcançado em ambas as fitas.
-- **Imprimir Estado Final**: Exibe o estado final, conteúdo das fitas e posição das cabeças.
+### Atributos
+- `estados`: Conjunto de todos os estados possíveis.
+- `simbolos_entrada`: Símbolos que a máquina pode receber como entrada.
+- `simbolos_fita`: Símbolos que podem ser escritos nas fitas.
+- `transicoes`: Dicionário mapeando a combinação de estado e símbolos lidos das duas fitas para um conjunto de possíveis ações.
+- `estado_inicial`: Estado inicial da máquina.
+- `simbolo_branco`: Símbolo usado para representar espaços vazios na fita.
+- `estados_finais`: Conjunto de estados nos quais a máquina pode terminar sua execução.
 
-## Dificuldades Encontradas
+### Métodos
+- **`__init__`**: Inicializa a máquina com os parâmetros especificados.
+- **`inicializar_fitas`**: Prepara as fitas com a entrada fornecida e preenche o restante com o símbolo branco.
+- **`passo`**: Realiza um passo de computação baseado no estado atual e nos símbolos sob as cabeças de leitura/gravação.
+- **`executar`**: Executa a máquina a partir de uma entrada, processando até alcançar um estado final ou não ter transições possíveis.
+- **`imprimir_estado`**: Mostra o estado atual da máquina, incluindo o conteúdo das fitas e a posição das cabeças de leitura/gravação.
 
-- **Indeterminismo**: A seleção de transições aleatórias introduziu complexidade no teste e na verificação das máquinas.
-- **Sincronização de Fitas**: Para a máquina de duas fitas, garantir a sincronização adequada e a comparação precisa entre as cadeias foi desafiador.
-- **Otimização de Desempenho**: Melhorar a eficiência das máquinas, especialmente com entradas maiores, exigiu ajustes significativos nas funções de transição e gerenciamento de estados.
+## Definição e Execução
+
+- **Estados**: Define os estados possíveis, incluindo o estado final.
+- **Símbolos de Entrada e Fita**: Define quais símbolos podem ser lidos e escritos.
+- **Transições**: Mapeia os estados e símbolos lidos para possíveis novos estados e ações.
+- **Inicialização e Execução**: Cria uma instância da máquina e executa com entradas de exemplo.
+
+
+# Máquina de Turing Indeterminística para Verificação de Palíndromos
+
+Este código define e simula uma Máquina de Turing Indeterminística (MTI) em Python. O propósito é verificar se uma cadeia de entrada é um palíndromo. Abaixo, está uma descrição detalhada dos componentes do código e sua funcionalidade.
+
+## Classe `MaquinaDeTuringIndeterministica`
+
+A classe `MaquinaDeTuringIndeterministica` simula o comportamento de uma Máquina de Turing com múltiplas possíveis transições para cada par de estado e símbolo de entrada.
+
+### Atributos
+
+- `estados`: Conjunto de todos os estados possíveis na máquina.
+- `alfabeto`: Conjunto de símbolos que podem ser lidos na entrada.
+- `alfabeto_fita`: Conjunto de símbolos que podem existir na fita.
+- `funcao_transicao`: Dicionário que mapeia cada par (estado, símbolo) para uma lista de tuplas (novo_estado, símbolo a escrever, movimento da cabeça).
+- `estado_inicial`: Estado inicial da máquina.
+- `estado_aceitacao`: Estado que indica a aceitação da cadeia.
+- `estado_rejeicao`: Estado que indica a rejeição da cadeia.
+- `fita`: Lista que simula a fita da máquina de Turing.
+- `cabeca`: Índice que aponta para a posição atual da cabeça de leitura/escrita na fita.
+- `estado_atual`: Estado atual da máquina durante a execução.
+
+### Métodos
+
+- `__init__`: Construtor que inicializa a máquina com os estados, alfabeto, funções de transição e estados de aceitação/rejeição.
+- `inicializar_fita`: Prepara a fita com a entrada fornecida e um símbolo de espaço ('_') no final.
+- `passo`: Executa um passo da computação, onde lê o símbolo sob a cabeça de leitura, escolhe uma transição possível de forma aleatória e realiza a ação correspondente.
+- `executar`: Executa a máquina até que chegue a um estado de aceitação ou rejeição.
+-
 
 ## Conclusão
 
