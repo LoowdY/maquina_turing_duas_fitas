@@ -54,6 +54,12 @@ class MaquinaDeTuringIndeterministica:
         print("Estado final:", self.estado_atual)
         print("Conteúdo da fita:", ''.join(self.fita))
         print("Posição da cabeça:", self.cabeca)
+        
+def imprimir_automato(funcao_transicao):
+    print("Autômato da Máquina de Turing Indeterminística:")
+    for (estado_atual, simbolo_atual), transicoes in funcao_transicao.items():
+        for (estado_proximo, simbolo_escrever, direcao) in transicoes:
+            print(f"De ({estado_atual}, '{simbolo_atual}') para ({estado_proximo}, '{simbolo_escrever}', '{direcao}')")        
 
 # Exemplo: Máquina de Turing Indeterminística para Verificar Palíndromos
 estados = {'q0', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8', 'q9', 'q10', 'q11', 'q_aceitar', 'q_rejeitar'}
@@ -114,5 +120,10 @@ if resultado:
     print("A cadeia foi aceita.")
 else:
     print("A cadeia foi rejeitada.")
+
+# Exemplo de uso da função para imprimir o autômato
+imprimir_automato(mt.funcao_transicao)
+
+
 
 mt.imprimir_estado_final()
