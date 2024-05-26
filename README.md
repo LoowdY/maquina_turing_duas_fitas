@@ -2,7 +2,7 @@
 
 ## Introdução
 
-Este documento descreve duas implementações de Máquinas de Turing em Python, projetadas por João Renan Lopes, Pedro Henrique Coimbra e Carlos Egger. 
+Este documento descreve duas implementações de Máquinas de Turing em Python, projetadas por João Renan Lopes, Pedro Henrique Coimbra e Carlos Egger, João Severino e Rodrigo Franco. 
 
 ## Máquina de Turing Indeterminística de Fita Única
 
